@@ -8,7 +8,7 @@ Classes
     HumanPlayer (subclass of Player)
     ComputerPlayer (subclass of Player)
     Game
-
+This module is on GitHub in my account https://github.com/emmlev0809
 """
 import random
 
@@ -74,7 +74,6 @@ class PlayerObject:
         # The allowable objects are in cls.allowable_objects
         return PlayerObject(random.choice(cls.allowable_objects))
 
-
     @classmethod
     def set_object_rules(cls, allowable_objects=None, win_dict=None):
         """
@@ -88,7 +87,6 @@ class PlayerObject:
         Returns True if the name attribute of self and other are the same
         """
         return self.name == other.name
-
 
     def __gt__(self, other):
         """
@@ -118,6 +116,7 @@ class Player:
         current_object: PlayerObject or None
             What the player's current object is None for not selected
     """
+
     def __init__(self, name=None):
         """
         Constructs the necessary attributes for the Player class
@@ -136,7 +135,7 @@ class Player:
 
     def win_round(self):
         """ Increases score by one """
-        self.score +=1
+        self.score += 1
 
     def __repr__(self):
         """ Representation of the object """
@@ -147,6 +146,7 @@ class Player:
 # The HumanPlayer Class is a subclass of Player representing a human player
 class HumanPlayer(Player):
     """ Subclass of Player representing a human player (PC) """
+
     def choose_object(self, choice):
         """ Chooses a PlayerObject for the player"""
         self.current_object = PlayerObject(choice)
@@ -155,14 +155,15 @@ class HumanPlayer(Player):
 # The ComputerPlayer Class is a subclass of Player representing a Computer player
 class ComputerPlayer(Player):
     """ Subclass of Player representing a Computer player (NPC) """
+
     def __init__(self):
         """ Constructs super Player object with name "Computer """
         super().__init__("Computer")
 
-
     def choose_object(self):
         """ Computer chooses a random PlayerObject """
         self.current_object = PlayerObject.random_object()
+
 
 # The Game class contains the instructions for running the game
 class Game:
@@ -183,6 +184,7 @@ class Game:
         round_winner
             the PlayerObject for the round winner (None if no winner)
     """
+
     def __init__(self, allowable_objects=None, win_dict=None):
         if allowable_objects is None:
             allowable_objects = RPSLS_OBJECTS
@@ -222,12 +224,11 @@ class Game:
 
     def next_round(self):
         """ Resets game objects ready for a new round """
-        self.current_round +=1
+        self.current_round += 1
         self.round_winner = None
         self.round_result = None
         self.players[1].current_object = None
         self.players[0].current_object = None
-
 
     def is_finished(self):
         """ Checks if game is finished """
@@ -250,7 +251,6 @@ class Game:
         """ Returns a string with the current scores """
         return f"After {self.current_round} rounds:\n{self.players[0].name} has scored {self.players[0].score}\nComputer has scored {self.players[1].score}"
 
-
     def report_winner(self):
         """ Returns a message with the overall winner """
         if self.players[0].score > self.players[1].score:
@@ -259,6 +259,3 @@ class Game:
             return f"{self.players[1].name} is the winner"
         else:
             return "Game is drawn"
-
-
-
