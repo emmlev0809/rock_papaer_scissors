@@ -187,9 +187,9 @@ class Game:
 
     def __init__(self, allowable_objects=None, win_dict=None):
         if allowable_objects is None:
-            allowable_objects = RPSLS_OBJECTS
+            self.allowable_objects = RPSLS_OBJECTS
         if win_dict is None:
-            win_dict = RPSLS_WIN_DICT
+            self.win_dict = RPSLS_WIN_DICT
         self.max_rounds = 0
         self.players = []
         self.current_round = 0
@@ -245,17 +245,18 @@ class Game:
 
     def report_round(self):
         """ returns a message reporting on what the players played and what the result of the round was """
-        return f"{self.players[0].name} choose '{self.players[0].current_object.name}'.\nComputer choose '{self.players[1].current_object.name}'.\n{self.round_winner.name} won this round"
+
+        return f"\n☆ {self.players[0].name} played {self.players[0].current_object.name}... computer played {self.players[1].current_object.name}\n..."
 
     def report_score(self):
         """ Returns a string with the current scores """
-        return f"After {self.current_round} rounds:\n{self.players[0].name} has scored {self.players[0].score}\nComputer has scored {self.players[1].score}"
+        return f"☆ after {self.current_round} rounds:{self.players[0].name} scored {self.players[0].score}! computer has scored {self.players[1].score}!"
 
     def report_winner(self):
         """ Returns a message with the overall winner """
         if self.players[0].score > self.players[1].score:
-            return f"{self.players[0].name} is the winner"
+            return f"☆ {self.players[0].name} won! yay!"
         elif self.players[0].score < self.players[1].score:
-            return f"{self.players[1].name} is the winner"
+            return f"☆ {self.players[0].name} lost! noo!"
         else:
             return "Game is drawn"

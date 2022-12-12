@@ -8,19 +8,24 @@ class CommandLine:
         self.players = self.game.players
 
     def set_up(self):
-        print("WELCOME TO GAME! IT IS ROCK PAPER SCISSORS LIZARD SPOCK")
-        human_name = input("WHAT IS YOUR NAME")
+        print("welcome to rock paper scissors lizard spock!! ")
+        human_name = input("what is your name :)")
+
         self.game.add_human_player(human_name)
         self.game.add_computer_player()
-        print("COMPUTER PLAYER ADDED")
+        print("a computer player is added!")
 
 
     def input_max_rounds(self):
-        rounds = int(input("HOW MANY ROUNDS"))
-        self.game.set_max_rounds(rounds)
+        rounds = input("how many rounds would you like?")
+        while rounds.isdigit() is False:
+            rounds = input("input a number for rounds you would like!")
+        self.game.set_max_rounds(int(rounds))
 
     def get_choices(self):
-        choice = input("WHAT DO YOU CHOOSE")
+        choice = input("\nchoose a move!")
+        while choice not in self.game.allowable_objects:
+            choice = input("that isn't a valid move...\nchoose a move!")
         self.players[0].choose_object(choice)
         self.players[1].choose_object()
 
@@ -28,9 +33,9 @@ class CommandLine:
         self.game.next_round()
         self.get_choices()
         self.game.find_winner()
-        print (self.game.report_round())
-        print (self.game.report_winner())
-        print (self.game.report_score())
+        print(self.game.report_round())
+        print(self.game.report_winner())
+        print(self.game.report_score())
 
 
     def run_sequence(self):
@@ -38,7 +43,8 @@ class CommandLine:
         self.input_max_rounds()
         while self.game.current_round < self.game.max_rounds:
             self.run_game()
-
+        print("GAME DONE")
+        self.game.reset()
 
 if __name__ == "__main__":
     cli = CommandLine()
