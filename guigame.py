@@ -6,8 +6,27 @@ from tkinter import ttk
 class GUI(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.options_page = OptionsPage(self)
-        self.options_page.pack()
+        # self.options_page = OptionsPage(self)
+        # self.options_page.pack()
+        title = "Emma's super app"
+        title_label = tk.Label(self, text=title, bg="purple", fg="yellow", width=40, font=("Sawarabi Mincho", 20))
+        self.frames = {
+            "frame_one": OptionsPage(self)
+        }
+        title_label.pack(side=tk.TOP)
+        self.show_frame("frame_one")
+
+
+    def show_frame(self, frame):
+        widgets = self.winfo_children()
+
+        for w in widgets:
+            if w.winfo_class() == "Frame":
+                w.pack_forget()
+
+        frameshow = self.frames[frame]
+        frameshow.pack(side=tk.TOP)
+        frameshow.set_up()
 
 
 class OptionsPage(tk.Frame):
@@ -18,13 +37,13 @@ class OptionsPage(tk.Frame):
 
         self.rps_text = tk.Label(self,
                                  text="Rock Paper Scissors (Lizard Spock)",
-                                 font=("Arial", 20)
+                                 font=("Sawarabi Mincho", 20)
                                  )
-        self.input_name_text = tk.Label(self.master,
+        self.input_name_text = tk.Label(self,
                                         text="Enter player name.",
                                         font=("Arial", 10)
                                         )
-        self.input_rounds_text = tk.Label(self.master,
+        self.input_rounds_text = tk.Label(self,
                                           text="Enter round number.",
                                           font=("Arial", 10)
                                           )
@@ -34,7 +53,9 @@ class OptionsPage(tk.Frame):
         self.enter_name_box = tk.Entry(self, width=40)
         self.enter_rounds_box = tk.Entry(self, width=40)
 
-        #self.title = self.title("Registration form")
+        # self.rps_text.grid(row=0, column=0)
+
+
         self.place_widgets()
 
     def place_widgets(self):
@@ -51,12 +72,13 @@ class OptionsPage(tk.Frame):
         self.input_name_text.grid(row=1, column=0, padx=5, pady=5, sticky="w")
         self.input_rounds_text.grid(row=2, column=0, padx=5, pady=5, sticky="w")
 
+    def set_up(self):
+        pass
 
 class GamePage(tk.Frame):
     pass
 
 
 if __name__ == '__main__':
-
     main_app = GUI()
     main_app.mainloop()
