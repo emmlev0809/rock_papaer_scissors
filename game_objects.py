@@ -246,17 +246,17 @@ class Game:
     def report_round(self):
         """ returns a message reporting on what the players played and what the result of the round was """
 
-        return f"\n☆ {self.players[0].name} played {self.players[0].current_object.name}... computer played {self.players[1].current_object.name}\n..."
+        return f"\n☆ {self.players[0].name} played {self.players[0].current_object.name}\n computer played {self.players[1].current_object.name}\n..."
 
     def report_score(self):
         """ Returns a string with the current scores """
-        return f"☆ after {self.current_round} rounds:{self.players[0].name} scored {self.players[0].score}! computer has scored {self.players[1].score}!"
+        return f"☆ After {self.current_round} rounds:\n {self.players[0].name} scored {self.players[0].score}!\n Computer scored {self.players[1].score}!"
 
     def report_winner(self):
         """ Returns a message with the overall winner """
-        if self.players[0].score > self.players[1].score:
-            return f"☆ {self.players[0].name} won! yay!"
-        elif self.players[0].score < self.players[1].score:
-            return f"☆ {self.players[0].name} lost! noo!"
+        if self.players[0].current_object > self.players[1].current_object:
+            return f"☆ {self.players[0].name} won!"
+        elif self.players[0].current_object < self.players[1].current_object:
+            return f"☆ Computer won!"
         else:
-            return "Game is drawn"
+            return "☆ The game draws!"
