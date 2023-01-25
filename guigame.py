@@ -1,8 +1,8 @@
 # Import Module
 import tkinter as tk
-from game_objects import Game, PlayerObject, ComputerPlayer
-from tkinter import ttk
+from game_objects import Game
 
+from functools import partial
 
 class GUI(tk.Tk):
     def __init__(self):
@@ -116,35 +116,35 @@ class GamePage(tk.Frame):
 
         self.player_rock_button = tk.Button(self, text="Rock",
                                             fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                            activebackground='yellow', command=self.play_round_rock)
+                                            activebackground='yellow', command=partial(self.play_round, "rock"))
         self.player_paper_button = tk.Button(self, text="Paper",
                                              fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                             activebackground='yellow', command=self.play_round_paper)
+                                             activebackground='yellow', command=partial(self.play_round, "paper"))
         self.player_scissors_button = tk.Button(self, text="Scissors",
                                                 fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                activebackground='yellow', command=self.play_round_scissors)
+                                                activebackground='yellow', command=partial(self.play_round, "scissors"))
         self.player_lizard_button = tk.Button(self, text="Lizard",
                                                 fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                activebackground='yellow', command=self.play_round_lizard)
+                                                activebackground='yellow', command=partial(self.play_round, "lizard"))
         self.player_spock_button = tk.Button(self, text="Spock",
                                                 fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                activebackground='yellow', command=self.play_round_spock)
+                                                activebackground='yellow', command=partial(self.play_round, "spock"))
 
         self.computer_rock_button = tk.Button(self, text="Rock",
                                               fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                              state="disable")
+                                              state="disabled")
         self.computer_paper_button = tk.Button(self, text="Paper",
                                                fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                               state="disable")
+                                               state="disabled")
         self.computer_scissors_button = tk.Button(self, text="Scissors",
                                                   fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                                  state="disable")
+                                                  state="disabled")
         self.computer_lizard_button = tk.Button(self, text="Lizard",
                                                fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                               state="disable")
+                                               state="disabled")
         self.computer_spock_button = tk.Button(self, text="Spock",
                                                   fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                                  state="disable")
+                                                  state="disabled")
 
         self.back_button = tk.Button(self, text="Back to menu",
                                      fg="white", bg="red", font=("Sawarabi Mincho", 10),
@@ -194,170 +194,113 @@ class GamePage(tk.Frame):
 
                 if colour == "yellow":
                     self.player_rock_button.configure(text="Rock", fg="black", bg="yellow", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_rock)
+                                                      activebackground='yellow', command=partial(self.play_round, "rock"))
                 elif colour == "red":
                     self.player_rock_button.configure(text="Rock", fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_rock)
+                                                      activebackground='yellow', command=partial(self.play_round, "rock"))
 
             elif object == "paper":
                 
                 if colour == "yellow":
                     self.player_paper_button.configure(text="Paper", fg="black", bg="yellow", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_paper)
+                                                      activebackground='yellow', command=partial(self.play_round, "paper"))
                 elif colour == "red":
                     self.player_paper_button.configure(text="Paper", fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_paper)
+                                                      activebackground='yellow', command=partial(self.play_round, "paper"))
             elif object == "scissors":
                 
                 if colour == "yellow":
                     self.player_scissors_button.configure(text="Scissors", fg="black", bg="yellow", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_scissors)
+                                                      activebackground='yellow', command=partial(self.play_round, "scissors"))
                 elif colour == "red":
                     self.player_scissors_button.configure(text="Scissors", fg="white", bg="red", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_scissors)
+                                                      activebackground='yellow', command=partial(self.play_round, "scissors"))
 
             elif object == "lizard":
 
                 if colour == "yellow":
                     self.player_lizard_button.configure(text="Lizard", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_lizard)
+                                                      activebackground='yellow', command=partial(self.play_round, "lizard"))
                 elif colour == "red":
                     self.player_lizard_button.configure(text="Lizard", fg="white", bg="red",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_lizard)
+                                                      activebackground='yellow', command=partial(self.play_round, "lizard"))
             elif object == "spock":
 
                 if colour == "yellow":
                     self.player_spock_button.configure(text="Spock", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_spock)
+                                                      activebackground='yellow', command=partial(self.play_round, "spock"))
                 elif colour == "red":
                     self.player_spock_button.configure(text="Spock", fg="white", bg="red",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', command=self.play_round_spock)
+                                                      activebackground='yellow', command=partial(self.play_round, "spock"))
         elif user == "computer":
             if object == "rock":
                 if colour == "blue":
                     self.computer_rock_button.configure(text="Rock", fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
                 elif colour == "yellow-d":
                     self.computer_rock_button.configure(text="Rock", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
             elif object == "paper":
                 if colour == "blue":
                     self.computer_paper_button.configure(text="Paper", fg="white", bg="blue", font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
                 elif colour == "yellow-d":
                     self.computer_paper_button.configure(text="Paper", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
 
             elif object == "scissors":
                 if colour == "blue":
                     self.computer_scissors_button.configure(text="Scissors", fg="white", bg="blue",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
                 elif colour == "yellow-d":
                     self.computer_scissors_button.configure(text="Scissors", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
             elif object == "lizard":
                 if colour == "blue":
                     self.computer_lizard_button.configure(text="Lizard", fg="white", bg="blue",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
                 elif colour == "yellow-d":
                     self.computer_lizard_button.configure(text="Lizard", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
 
             elif object == "spock":
                 if colour == "blue":
                     self.computer_spock_button.configure(text="Spock", fg="white", bg="blue",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
                 elif colour == "yellow-d":
                     self.computer_spock_button.configure(text="Spock", fg="black", bg="yellow",
                                                       font=("Sawarabi Mincho", 10),
-                                                      activebackground='yellow', state="disable")
+                                                      activebackground='yellow', state="disabled")
 
 
-    def play_round_rock(self):
-        self.players[0].choose_object("rock")
 
-        for e in self.objects:
-            self.colour_change("player", e, "red")
-        self.colour_change("player", "rock", "yellow")
 
-        self.play_round()
-
-    def play_round_paper(self):
-        self.players[0].choose_object("paper")
+    def play_round(self, object):
+        self.players[0].choose_object(f"{object}")
 
         for e in self.objects:
             self.colour_change("player", e, "red")
-        self.colour_change("player", "paper", "yellow")
+        self.colour_change("player", f"{object}", "yellow")
 
-        self.play_round()
-
-    def play_round_scissors(self):
-        self.players[0].choose_object("scissors")
-
-        for e in self.objects:
-            self.colour_change("player", e, "red")
-        self.colour_change("player", "scissors", "yellow")
-
-        self.play_round()
-
-    def play_round_lizard(self):
-        self.players[0].choose_object("lizard")
-
-        for e in self.objects:
-            self.colour_change("player", e, "red")
-        self.colour_change("player", "lizard", "yellow")
-
-        self.play_round()
-
-    def play_round_spock(self):
-        self.players[0].choose_object("spock")
-
-        for e in self.objects:
-            self.colour_change("player", e, "red")
-        self.colour_change("player", "spock", "yellow")
-
-        self.play_round()
-
-    def play_round(self):
 
         self.players[1].choose_object()
 
-
-        if self.players[1].current_object.name == "rock":
-            for e in self.objects:
-                self.colour_change("computer", e, "blue")
-            self.colour_change("computer", "rock", "yellow-d")
-
-        elif self.players[1].current_object.name == "paper":
-            for e in self.objects:
-                self.colour_change("computer", e, "blue")
-            self.colour_change("computer", "paper", "yellow-d")
-
-        elif self.players[1].current_object.name == "scissors":
-            for e in self.objects:
-                self.colour_change("computer", e, "blue")
-            self.colour_change("computer", "scissors", "yellow-d")
-
-        elif self.players[1].current_object.name == "lizard":
-            for e in self.objects:
-                self.colour_change("computer", e, "blue")
-            self.colour_change("computer", "lizard", "yellow-d")
-
-        elif self.players[1].current_object.name == "spock":
-            for e in self.objects:
-                self.colour_change("computer", e, "blue")
-            self.colour_change("computer", "spock", "yellow-d")
+        for ee in self.objects:
+            if self.players[1].current_object.name == f"{ee}":
+                for e in self.objects:
+                    self.colour_change("computer", e, "blue")
+                self.colour_change("computer", f"{ee}", "yellow-d")
 
 
         self.game.find_winner()
@@ -386,10 +329,6 @@ class GamePage(tk.Frame):
 
     def place_widgets(self):
 
-        for i in range(0,6):
-            self.grid_columnconfigure(i, weight=1, uniform="Column")
-        for i in range(0,6):
-            self.grid_rowconfigure(i, weight=1, uniform="Row")
 
         self.player_rock_button.grid(row=1, column=1, padx=5, pady=5, sticky="NEWS")
         self.player_paper_button.grid(row=1, column=2, padx=5, pady=5, sticky="NEWS")
@@ -410,11 +349,14 @@ class GamePage(tk.Frame):
 
         self.rounds_text.grid(row=3, column=1, padx=5, pady=5, sticky="NEWS")
 
+        self.round_info_text.grid(row=3, column=2, padx=5, pady=5, sticky="NEWS",columnspan=2, rowspan=1)
 
-        self.round_info_text.grid(row=3, column=3, padx=5, pady=5, sticky="NEWS", )
+        for i in range(0,6):
+            self.columnconfigure(i, weight=1, uniform="Column")
+        for i in range(0,6):
+            self.rowconfigure(i, weight=1, uniform="Row")
 
 
 if __name__ == '__main__':
     main_app = GUI()
     main_app.mainloop()
-
